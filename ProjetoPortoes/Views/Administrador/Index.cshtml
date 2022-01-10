@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.Administrador>
+@using ProjetoPortoes.Models
+
+@{
+    ViewBag.Title = "Administração";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading" style="text-align:center">
+        Administrar
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Categoria", "Index", "Categoria")
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("SubCategoria","Index","SubCategoria")
+    </div>   
+    <div class="panel-body">
+        @Html.ActionLink("Produto", "Index", "Produto")
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Usuário", "Index", "Usuario")
+    </div>
+</div>

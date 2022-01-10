@@ -1,0 +1,54 @@
+﻿@model ProjetoPortoes.Models.Usuario
+
+@{
+    ViewBag.Title = "Detalhes do Usuário";
+}
+
+<h2>Details</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Login: </b>
+        @Html.DisplayFor(model => model.Login)
+    </div>
+    <div class="panel-body">
+        <b>CEP: </b>
+        @Html.DisplayFor(model => model.CEP)
+    </div>
+    <div class="panel-body">
+        <b>Cidade: </b>
+        @Html.DisplayFor(model => model.Cidade)
+    </div>
+    <div class="panel-body">
+        <b>Complemento: </b>
+        @Html.DisplayFor(model => model.Complemento)
+    </div>
+    <div class="panel-body">
+        <b>Endereço: </b>
+        @Html.DisplayFor(model => model.Endereco)
+    </div>
+    <div class="panel-body">
+        <b>Estado: </b>
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+    <div class="panel-body">
+        <b>Número: </b>
+        @Html.DisplayFor(model => model.Numero)
+    </div>
+    <div class="panel-body">
+        <b>Telefone: </b>
+        @Html.DisplayFor(model => model.Telefone)
+    </div>
+    <div class="panel-footer">
+        <b>CPF: </b>
+        @Html.DisplayFor(model => model.CPF)
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.UsuarioId }) |
+    @Html.ActionLink("Voltar para a Lista", "Index")
+</p>

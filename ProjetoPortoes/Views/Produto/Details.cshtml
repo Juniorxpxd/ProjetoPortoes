@@ -1,0 +1,36 @@
+﻿@model ProjetoPortoes.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes do Produto";
+    var item = Model;
+    string valor = (item.Preco).ToString("C2");
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b>Nome da SubCategoria: </b>
+        @Html.DisplayFor(model => model.SubCategoria.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Preço: </b>
+        @Html.DisplayFor(model => valor)
+    </div>
+    <div class="panel-body">
+        <b>Quantidade: </b>
+        @Html.DisplayFor(model => model.Quantidade)
+    </div>
+    <div class="panel-footer">
+        <b>Descrição: </b>
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ProdutoId }) |
+    @Html.ActionLink("Voltar para a lista", "Index")
+</p>

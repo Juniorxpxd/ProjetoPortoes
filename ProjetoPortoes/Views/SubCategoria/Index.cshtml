@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.SubCategoria>
+
+@{
+    ViewBag.Title = "SubCategoria";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Criar nova SubCategoria", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>Opções</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            <img src="~/Imagens/@item.Imagem" width="200px" height="150px" />
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.SubCategoriaId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.SubCategoriaId }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.SubCategoriaId })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Voltar para a Lista", "Index", "Administrador")
+</div>

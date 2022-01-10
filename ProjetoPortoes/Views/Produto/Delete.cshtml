@@ -1,0 +1,45 @@
+﻿@model ProjetoPortoes.Models.Produto
+
+@{
+    ViewBag.Title = "Apagar Produto";
+    var item = Model;
+    string valor = (item.Preco).ToString("C2");
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você tem certeza que quer apagar o Produto: @item.Nome ? </h3>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b>Nome da SubCategoria: </b>
+        @Html.DisplayFor(model => model.SubCategoria.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Preço: </b>
+        @Html.DisplayFor(model => valor)
+    </div>
+    <div class="panel-body">
+        <b>Quantidade: </b>
+        @Html.DisplayFor(model => model.Quantidade)
+    </div>
+    <div class="panel-footer">
+        <b>Descrição: </b>
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Deletar" class="btn btn-default" /> |
+        @Html.ActionLink("Voltar para a lista", "Index")
+    </div>
+}
+</div>

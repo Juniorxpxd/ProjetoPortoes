@@ -1,0 +1,32 @@
+﻿@model ProjetoPortoes.Models.SubCategoria
+
+@{
+    ViewBag.Title = "Apagar SubCategoria";
+    var item = Model;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você tem certeza que quer apagar a SubCategoria: @item.Nome ? </h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b>Nome da Categoria: </b>
+        @Html.DisplayFor(model => model.Categoria.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-footer">
+        <b>Descrição: </b>
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+</div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }

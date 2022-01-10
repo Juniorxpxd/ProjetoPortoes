@@ -1,0 +1,28 @@
+﻿@model ProjetoPortoes.Models.SubCategoria
+@using ProjetoPortoes.Models
+@using ProjetoPortoes.DAL
+
+    @{
+        ViewBag.Title = "Detalhes";
+    }
+
+    <h2>@ViewBag.Title</h2>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <b>Nome da Categoria: </b>
+                @Html.DisplayFor(model => model.Categoria.Nome)
+            </div>
+            <div class="panel-body">
+                <b>Nome: </b>
+                @Html.DisplayFor(model => model.Nome)
+            </div>
+            <div class="panel-footer">
+                <b>Descrição</b>
+                @Html.DisplayFor(model => model.Descricao)
+            </div>
+        </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.SubCategoriaId }) |
+        @Html.ActionLink("Voltar para a lista", "Index")
+    </p>

@@ -1,0 +1,21 @@
+﻿@model ProjetoPortoes.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.Imagem)
+        @Html.DisplayFor(model => model.Preco)
+        @Html.DisplayFor(model => model.Descricao)
+
+    </div>
+    <div class="panel-footer">
+        @Html.DisplayFor(model => model.Quantidade)
+    </div>
+</div>

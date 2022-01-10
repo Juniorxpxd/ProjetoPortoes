@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.Caracteristicas>
+
+@{
+    ViewBag.Title = "Caracteristicas do Produto";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Nome)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.Alimentacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotenciaMotor)
+        </th>
+        <th>Opções</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Alimentacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotenciaMotor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CaracteristicaId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CaracteristicaId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.CaracteristicaId })
+            </td>
+        </tr>
+    }
+    </table>
+<div>
+    @Html.ActionLink("Voltar para a Lista", "Index", "Administrador")
+</div>

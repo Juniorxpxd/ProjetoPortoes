@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using ProjetoPortoes.DAL
+@using ProjetoPortoes.Models
+@{
+    Categoria cat = ViewBag.Categoria;
+    int lblQuantidade = ItemVendaDAO.RetornarQuantidadeDoCarrinho();
+    ItemVenda itemv = new ItemVenda();
+    itemv.CarrinhoId = ItemVendaDAO.RetornarCarrinhoId();
+    Usuario usu = new Usuario();
+    if (Request.IsAuthenticated)
+    {
+        usu.Login = HttpContext.Current.User.Identity.Name;
+    }
+    //Administrador adm = new Administrador();
+    //if (Request.IsAuthenticated)
+    //{
+    //    adm.Login = HttpContext.Current.User.Identity.Name;
+    //    var login = AdministradorDAO.BuscarAdministradorPorLogin(adm);
+    //    if (login.Login.Equals("juninho@hotmail.com"))
+    //    {
+    //        var login2 = login.Login;
+    //        adm.Login = login2;
+    //    }
+    //}
+    var itemu = usu;
+    }
+<html>
+<head>
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/simplex.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.intellisense.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li style="font-weight:bold; font-size:17px">@Html.ActionLink("Só Portões e Portas Automáticas Curitiba", "Inicio", "SubCategoria", new { @class = "navbar-brand" }, null)</li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav">
+                    @if (HttpContext.Current.User.Identity.Name != "juninho@hotmail.com")
+                    {
+                        foreach (var item in CategoriaDAO.ListarCategorias())
+                        {
+                        <li>@Html.ActionLink(item.Nome, "SubCategorias", "SubCategoria", new { id = item.CategoriaId }, null)</li>
+                        }
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.Label(lblQuantidade.ToString(), new { @class = "badge" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Carrinho", "CarrinhoCompras", "ItemVenda", new { id = itemv.CarrinhoId }, null)
+                    </li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Cadastro", "Create", "Usuario")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Login", "Login", "Usuario")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Login ADM", "Login", "Administrador")
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("ADM", "Index", "Administrador")
+                        </li>
+                        <li>
+                            @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Usuario", "Usuario", new { id = itemu.UsuarioId }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Logout", "Logout", "Usuario")
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer style="text-align:center">
+        <p>
+            &copy; @DateTime.Now.Year - Só Portões e Portas Automáticas Curitiba
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.ItemVenda>
+@using ProjetoPortoes.DAL
+@using ProjetoPortoes.Models
+
+@{
+    ViewBag.Title = "CarrinhoCompras";
+    string total = ItemVendaDAO.RetornarValorTotalDoCarrinho().ToString("C2");
+    ItemVenda itemv = new ItemVenda();
+    itemv.CarrinhoId = ItemVendaDAO.RetornarCarrinhoId();
+}
+
+<h2>CarrinhoCompras</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Imagem)
+        </th>
+        <th>
+            SubTotal
+        </th>
+        <th>
+            Remover
+        </th>
+    </tr>
+
+    @foreach (var item in ItemVendaDAO.RetornarItensDoCarrinho())
+    {
+        string valor = (item.Quantidade * item.Preco).ToString("C2");
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                <img src="~/Imagens/@item.Produto.Imagem" width="150px" height="100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => valor)
+            </td>
+            <td>
+                @Html.ActionLink("Remover", "RemoverDoCarrinho", "ItemVenda", new { id = item.ProdutoId }, null)
+            </td>
+        </tr>
+    }
+    <tr>
+        <th>
+            Total:
+        </th>
+        <th>
+            Checkout:
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => total)
+        </td>
+        <td>
+            @Html.ActionLink("Ir para o checkout", "Checkout", "ItemVenda", null, new { id = itemv.CarrinhoId, @class = "btn btn-primary" })
+        </td>
+    </tr>
+</table>

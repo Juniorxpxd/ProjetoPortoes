@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.ItemVenda>
+@using ProjetoPortoes.DAL
+@using ProjetoPortoes.Models
+
+@{
+    ViewBag.Title = "Checkout";
+    string total = ItemVendaDAO.RetornarValorTotalDoCarrinho().ToString("C2");
+    ItemVenda itemv = new ItemVenda();
+    itemv.CarrinhoId = ItemVendaDAO.RetornarCarrinhoId();
+    Usuario usu = new Usuario();
+    if (Request.IsAuthenticated)
+    {
+        usu.Login = HttpContext.Current.User.Identity.Name;
+    }
+    usu = UsuarioDAO.BuscarUsuarioPorLogin(usu);
+}
+
+<h2>Checkout</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.Imagem)
+        </th>
+        <th>
+            SubTotal
+        </th>
+    </tr>
+
+    @foreach (var item in ItemVendaDAO.RetornarItensDoCarrinho())
+    {
+        string valor = (item.Quantidade * item.Preco).ToString("C2");
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                <img src="~/Imagens/@item.Produto.Imagem" width="150px" height="100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => valor)
+            </td>
+        </tr>
+    }
+</table>
+<h3>Dados do Comprador</h3>
+<table class="table">
+        <tr>
+            <th>
+                <b>Nome</b>
+            </th>
+            <th>
+                <b>CPF</b>
+            </th>
+            <th>
+                <b>CEP</b>
+            </th>
+            <th>
+                <b>Endereço</b>
+            </th>
+            <th>
+                <b>Número</b>
+            </th>
+            <th>
+                <b>Telefone</b>
+            </th>
+        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.CEP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.Endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => usu.Telefone)
+                </td>
+            </tr>
+    </table>
+<div class="btn-group">
+    @Html.ActionLink("Finalizar Compra", "Create", "Venda", null ,new { id = itemv.CarrinhoId, @class = "btn btn-success" })
+</div>

@@ -1,0 +1,30 @@
+﻿@model ProjetoPortoes.Models.Categoria
+
+@{
+    ViewBag.Title = "Apagar Categoria";
+    var item = Model;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você tem certeza que quer apagar a Categoria: @item.Nome ? </h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+    <div class="panel-footer">
+        <b>Descrição: </b>
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+</div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>

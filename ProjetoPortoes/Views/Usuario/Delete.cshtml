@@ -1,0 +1,64 @@
+﻿@model ProjetoPortoes.Models.Usuario
+
+
+@{
+    ViewBag.Title = "Apagar Usuario";
+    var item = Model;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você tem certeza que quer apagar este Usuario: @item.Nome ? </h3>
+<div class="panel panel-info" style="width:500px; height:auto; vertical-align:top; text-align:justify;">
+        <div class="panel-heading">
+            <b>Nome: </b>
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+        <div class="panel-body">
+            <b>Login: </b>
+            @Html.DisplayFor(model => model.Login)
+        </div>
+        <div class="panel-body">
+            <b>CEP: </b>
+            @Html.DisplayFor(model => model.CEP)
+        </div>
+        <div class="panel-body">
+            <b>Cidade: </b>
+            @Html.DisplayFor(model => model.Cidade)
+        </div>
+        <div class="panel-body">
+            <b>Complemento: </b>
+            @Html.DisplayFor(model => model.Complemento)
+        </div>
+        <div class="panel-body">
+            <b>Endereço: </b>
+            @Html.DisplayFor(model => model.Endereco)
+        </div>
+        <div class="panel-body">
+            <b>Estado: </b>
+            @Html.DisplayFor(model => model.Estado)
+        </div>
+        <div class="panel-body">
+            <b>Número: </b>
+            @Html.DisplayFor(model => model.Numero)
+        </div>
+        <div class="panel-body">
+            <b>Telefone: </b>
+            @Html.DisplayFor(model => model.Telefone)
+        </div>
+        <div class="panel-footer">
+            <b>CPF: </b>
+            @Html.DisplayFor(model => model.CPF)
+        </div>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="width:auto; height:auto; vertical-align: auto; position:center; text-align:center; margin-top:4px; float:left">
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}

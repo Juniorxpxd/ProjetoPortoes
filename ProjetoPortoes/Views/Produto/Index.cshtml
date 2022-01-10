@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.Produto>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Criar novo Produto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategoria.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>Opções</th>
+        <th>Cadastrar Caracteristicas</th>
+    </tr>
+
+@foreach (var item in Model) {
+    string valor = (item.Preco).ToString("C2");
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubCategoria.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            <img src="~/Imagens/@item.Imagem" width="200px" height="150px" />
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ProdutoId }) |
+            @Html.ActionLink("Detalhes", "Details","Caracteristica", new { id=item.ProdutoId }, null) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.ProdutoId })
+        </td>
+        <td>@Html.ActionLink("Criar","Create","Caracteristica", new { id = item.ProdutoId}, null)</td>
+    </tr>
+}
+</table>
+<div>
+    @Html.ActionLink("Voltar para a Lista", "Index","Administrador")
+</div>

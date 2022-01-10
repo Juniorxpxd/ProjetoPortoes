@@ -1,0 +1,52 @@
+﻿@model ProjetoPortoes.Models.Usuario
+@using ProjetoPortoes.DAL
+@using ProjetoPortoes.Models
+
+@{
+    var item = Model;
+    ViewBag.Title = "Usuario";
+    ItemVenda itemv = new ItemVenda();
+    itemv = ViewBag.ItemVenda;
+    Venda venda = new Venda();
+    venda = ViewBag.Venda;
+}
+<div class="panel panel-info" style="width:500px; height:auto; vertical-align:top; text-align:justify; float:left">
+    <div class="panel-heading">
+        @Html.DisplayFor(modelItem => item.Nome)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(modelItem => item.CPF)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(modelItem => item.CEP)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(modelItem => item.Endereco)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(modelItem => item.Numero)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(modelItem => item.Telefone)
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel panel-info" style="width:500px; height:auto; vertical-align: auto; float:right; position:center">
+    <div class="panel-body">
+        <b>Nome do Produto: </b>
+        @Html.DisplayFor(modelItem => itemv.Produto.Nome)
+    </div>
+    <div class="panel-body">
+        <b>Quantidade comprada: </b>
+        @Html.DisplayFor(modelItem => itemv.Quantidade)
+    </div>
+    <div class="panel-body">
+        <b>Preço pago: </b>
+        @Html.DisplayFor(modelItem => itemv.Preco)
+    </div>
+    <div class="panel-body">
+        <b>Data da Venda: </b>
+        @Html.DisplayFor(modelItem => venda.DataDaVenda)
+    </div>
+</div>
+

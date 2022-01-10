@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.SubCategoria>
+@using ProjetoPortoes.Models
+
+@{
+    ViewBag.Title = "SubCategorias";
+    Categoria cat = ViewBag.Categoria;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-primary" style="text-align: center; width:auto; height:auto; float:left; vertical-align:middle;">
+       <div class="panel-heading">
+            @Html.DisplayFor(modelItem => item.Nome)
+        </div>
+        <div class="panel-body">
+            <a href='@Url.Action("Produtos", "Caracteristica", new { id = item.SubCategoriaId }, null)'><img src="~/Imagens/@item.Imagem" width="200px" height="300px" ) /></a>
+        </div>
+        <div class="panel-footer" style="text-align:left">
+            <b>Descrição: </b>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

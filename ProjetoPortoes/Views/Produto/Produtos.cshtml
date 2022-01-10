@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProjetoPortoes.Models.Produto>
+@using ProjetoPortoes.DAL
+@using ProjetoPortoes.Models
+@{
+    ViewBag.Title = "Produtos";
+    SubCategoria subcat = ViewBag.SubCategoria;
+    Caracteristicas carac = new Caracteristicas();
+    carac = ViewBag.Caracteristicas;
+}
+
+@foreach (var item in ProdutoDAO.ListarProdutos())
+{
+    string valor = (item.Preco).ToString("C2");
+    <div class="panel panel-primary" style="text-align: center; width:auto; height:auto; float:left; vertical-align:middle; margin:4px">
+        <div class="panel-heading">
+            @Html.DisplayFor(modelItem => item.Nome)
+        </div>
+        <div class="panel-body">     
+            <a href='@Url.Action("Detalhes", "Caracteristica", new { id = carac.CaracteristicaId }, null)'><img src="~/Imagens/@item.Imagem" width="130px" height="200px" ) /></a>
+        </div>
+        
+        <div class="panel-body" style="text-align:left">
+            <b>Preço: </b>
+            @Html.DisplayFor(modelItem => valor)
+        </div>
+        <div class="panel-body" style="text-align:left">
+            <b>Descrição: </b>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Adicionar ao carrinho", "Create", "ItemVenda", new { id = item.ProdutoId }, null)
+        </div> 
+        <div class="clearfix"></div>
+    </div>
+}

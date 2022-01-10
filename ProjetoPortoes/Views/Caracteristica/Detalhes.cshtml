@@ -1,0 +1,102 @@
+﻿@model ProjetoPortoes.Models.Caracteristicas
+
+@{
+    ViewBag.Title = "Características do Produto";
+    var item = Model;
+    string valor = item.Produto.Preco.ToString("C2");
+}
+<h3 style="text-align:center">@ViewBag.Title</h3>
+<div class="panel panel-info" style="width:500px; height:auto; vertical-align:top; text-align:justify; float:left">
+    <div class="panel-heading">
+        <b>Nome: </b>
+        @Html.DisplayFor(model => model.Produto.Nome)
+    </div>
+    <div class="panel panel-danger" style="text-align:center;">
+        <div class="panel-body">
+            <img src="~/Imagens/@item.Produto.Imagem" width="200px" height="150px" />
+        </div>
+    </div>
+    <div class="panel-body">
+        <b>Preço: </b>
+        @Html.DisplayFor(model => valor)
+    </div>
+    <div class="panel-body">
+        <b>Descrição: </b>
+        @Html.DisplayFor(model => model.Produto.Descricao)
+    </div>
+    <div class="panel-body">
+        <b>Alimentação: </b>
+        @Html.DisplayFor(model => model.Alimentacao)
+    </div>
+    <div class="panel-body">
+        <b>Capacitor: </b>
+        @Html.DisplayFor(model => model.Capacitor)
+    </div>
+    <div class="panel-body">
+        <b>Carga Máxima: </b>
+        @Html.DisplayFor(model => model.CargaMaxima)
+    </div>
+    <div class="panel-body">
+        <b>Consumo: </b>
+        @Html.DisplayFor(model => model.Consumo)
+    </div>
+    <div class="panel-body">
+        <b>Coroa Interna: </b>
+        @Html.DisplayFor(model => model.CoroaInterna)
+    </div>
+</div>
+<div class="panel panel-info" style="width:500px; height:auto; vertical-align: auto; float:right; position:center">
+    <div class="panel-body">
+        <b>Fim de Curso: </b>
+        @Html.DisplayFor(model => model.FimDeCurso)
+    </div>
+    <div class="panel-body">
+        <b>Fixação: </b>
+        @Html.DisplayFor(model => model.Fixacao)
+    </div>
+    <div class="panel-body">
+        <b>Frequência: </b>
+        @Html.DisplayFor(model => model.Frequencia)
+    </div>
+    <div class="panel-body">
+        <b>Motor: </b>
+        @Html.DisplayFor(model => model.Motor)
+    </div>
+    <div class="panel-body">
+        <b>Peso do Portão: </b>
+        @Html.DisplayFor(model => model.PesoPortao)
+    </div>
+    <div class="panel-body">
+        <b>Potência do Motor: </b>
+        @Html.DisplayFor(model => model.PotenciaMotor)
+    </div>
+    <div class="panel-body">
+        <b>Quantidade de Ciclos/Hora: </b>
+        @Html.DisplayFor(model => model.QuantidadeCiclosHora)
+    </div>
+    <div class="panel-body">
+        <b>Rotação do Motor: </b>
+        @Html.DisplayFor(model => model.RotacaoMotor)
+    </div>
+    <div class="panel-body">
+        <b>Tamanho do Trilho: </b>
+        @Html.DisplayFor(model => model.TamanhoTrilho)
+    </div>
+    <div class="panel-body">
+        <b>Velocidade de Abertura: </b>
+        @Html.DisplayFor(model => model.VelocidadeAbertura)
+    </div>
+    <div class="panel-footer">
+        <b>Versões: </b>
+        @Html.DisplayFor(model => model.Versoes)
+    </div>
+
+</div>
+<div class="panel panel-warning" style="width:auto; height:auto; vertical-align: auto; position:center; text-align:center; margin-top:4px; float:left">
+    <div class="panel-body">
+        @Html.ActionLink("Adicionar ao carrinho", "Create", "ItemVenda", new { id = item.ProdutoId}, null)
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Voltar para o inicio", "Inicio", "SubCategoria", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
