@@ -19,6 +19,7 @@ namespace ProjetoPortoes.DAL
             try
             {
 
+
                 entities.Administradores.Add(administradores);
                 entities.SaveChanges();
                 return true;
